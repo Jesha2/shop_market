@@ -9,7 +9,10 @@ module.exports= {
             allowNull:false,
             primaryKey: true
         },
-        orderDate: DataTypes.DATE,
+        orderDate: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW, // Set the default value to the current date and time
+          },
         status: DataTypes.STRING
     }
 

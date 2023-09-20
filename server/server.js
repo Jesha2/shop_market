@@ -1,37 +1,75 @@
+// server.js
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 4005;
-//middleware
-app.use(express.json()); // this CB function is called for every request
+
+//const { sequelize } = require("./util/database");
+
+
+const { seed } = require("./controllers/seedController");
+const { register, login } = require("./controllers/auth");
+const { isAuthenticated } = require("./middleware/isAuthenticated");
+const {
+	getAllProducts,
+	addOrder,
+	getOrder,
+	getOrderDetails,
+} = require("./controllers/shop");
+
+// Middleware setup
+app.use(express.json());
 app.use(cors());
 
-const { sequelize } = require("./util/database");
+// the seed controller Route
+app.post("/seed", seed);
 
-const {User} = require('./models/user');
-const {Order} = require('./models/order');
-const {OrderDetail} = require('./models/orderDetail');
-const {Product} = require('./models/product');
-User.hasMany(Order);
-Order.belongsTo(User); //A user created the Order
-// OR Order.belongsTo(User,{constraints: true, onDelete : "CASCADE"})//deletes the Order if user is deleted
-Order.hasMany(OrderDetail);
-OrderDetail.belongsTo(Order);
-Product.hasMany(OrderDetail);
+//user login/register/authentication routes
+app.post("/register", register);
+app.post("/login", login); //Using GET for login is generally not recommended because it would involve sending sensitive data (i.e., the username and password) as query parameters in the URL.This approach would expose the sensitive data in the URL, which can be logged in server logs, browser history, or intermediary proxy logs, making it less secure.
 
-const seedData = require('./seed');
+//Routes for Products
+app.get("/products", getAllProducts);
+app.post("/order", isAuthenticated,  addOrder);
+app.get("/order/:userId", getOrder);
+app.get("/orderDetails/:orderId", getOrderDetails);
+
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+//seed();
+
+
+
+
+
+
+
+
 // the force: true is for development -- it DROPS tables!!!
 // sequelize.sync({ force: true })
 //sequelize.sync()//.sync connects to DB &creates tables based on the models & define relations
-sequelize
-	.sync({ force: true })
-	.then(() => {
-        console.log('Database sync successful.');
-        seedData();
-		app.listen(PORT, () =>
-			console.log(`db sync successful & server running on port ${PORT}`)
-		);
-	})
-	.catch((err) => console.log(err));
-    //call the seedData() function after successfully synchronizing the database using sequelize.sync({ force: true }). This way, the seeding process will only start after the database tables have been created.
-    
+// sequelize
+// 	.sync()
+// 	.then(() => {
+// 		console.log("Database sync successful.");
+// 		//seed();
+// 		// Start the Express app
+// 		app.listen(PORT, () =>
+// 			console.log(`db sync successful & server running on port ${PORT}`)
+// 		);
+// 	})
+// 	.catch((err) => console.log(err));
+
+
+// OR Comment the above line which starts the express app  and uncomment below lines if you want this file to seed the data or else use the seed API on postman to seed. The following will seed the data each time you start the server
+// const startApp = async () => {
+//     try {
+//       await seed(); // Seed the data
+//        app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+//     } catch (error) {
+//       console.error("Error seeding data or starting the server:", error);
+//     }
+//   };
+
+// //   // Call the startApp function to start the app after seeding
+//   startApp();

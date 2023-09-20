@@ -13,7 +13,8 @@ module.exports= {
         description: DataTypes.TEXT,
         price : DataTypes.DECIMAL,
         stockQuantity : DataTypes.INTEGER,
-        category:DataTypes.STRING
+        category:DataTypes.STRING,
+        imageUrl: DataTypes.STRING 
 
     }
 
