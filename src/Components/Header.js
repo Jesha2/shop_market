@@ -22,11 +22,13 @@ const Header = () => {
 			<div className="header_logo">
 				{/* <WaterDropIcon fontSize="large" sx={{ color: amber[900] }} 
         className="header_logoImage"/> */}
-        <WaterDropIcon fontSize="large"  sx={{ color: transparentColor }} 
+        <WaterDropIcon fontSize="large"  sx={{ color: amber[500] }} 
         className="header_logoImage"/>
 				<h2 className="header_logoTitle"> 
-        Welcome to the world of Essential oils</h2>
+        Essential Oils</h2>
 			</div>
+
+			
 			<div className="header_search">
 				<input type="text" className="header_searchInput" />
 				<SearchIcon className="header_searchIcon"></SearchIcon>
@@ -38,10 +40,10 @@ const Header = () => {
 					<span className="nav_itemLine1">Hello Guest</span>
 					<span className="nav_itemLine2">Sign in</span>
 				</div>
-				<div className="nav_item">
+				{/* <div className="nav_item">
 					<span className="nav_itemLine1">my</span>
 					<span className="nav_itemLine2">market</span>
-				</div>
+				</div> */}
 				<div className="nav_itemCart">
 					<ShoppingCartTwoToneIcon />
 					<span className="nav_itemLine2 nav_cartCount">0</span>

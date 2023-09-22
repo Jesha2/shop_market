@@ -21,6 +21,8 @@ const seedData = async () => {
 				price: 49.99,
 				stockQuantity: 5,
 				category: "Calming oil",
+				imageUrl:"https://www.essentialoil.com/cdn/shop/files/Fragrance-London_Man_1_432x432.jpg?v=1693425213",
+				review:5,
 			},
 			{
 				productName: "CLOVE Oil 4oz",
@@ -28,6 +30,17 @@ const seedData = async () => {
 				price: 49.99,
 				stockQuantity: 5,
 				category: "Culinary Oil",
+				imageUrl:"https://doterra-prod-media1.s3.amazonaws.com/h43/h12/27855358623774.png",
+				review:4,
+			},
+			{
+				productName: "Frankenscience Oil 4oz",
+				description: "CLOVE Oil",
+				price: 49.99,
+				stockQuantity: 5,
+				category: "medicinal Oil",
+				imageUrl:"https://doterra-prod-media1.s3.amazonaws.com/h43/h12/27855358623774.png",
+				review:4,
 			},
 		]);
 

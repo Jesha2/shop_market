@@ -41,7 +41,7 @@ module.exports = {
 		try {
 			console.log("========================getAllProduct");
 			const Products = await Product.findAll();
-			console.log("===================sucess in getAllProducts");
+			console.log("===================success in getAllProducts");
 
 			res.status(200).send(Products);
 		} catch (error) {
@@ -50,13 +50,29 @@ module.exports = {
 			res.sendStatus(400);
 		}
 	},
+	getFavProducts: async (req, res) => {
+		console.log("========================getFavProducts");
+
+	// 	try {
+			
+	// 		const products = await Order.findAll({
+	// 			where: { rating>3 },
+				
+	// 		});
+	// 		res.status(200).send(products);
+	// 	} catch (error) {
+	// 		console.log("ERROR IN getFavProducts");
+	// 		console.log(error);
+	// 		res.sendStatus(400);
+	// 	}
+	 },
 
 	getOrder: async (req, res) => {
 		try {
 			const { userId } = req.params;
 			const orders = await Order.findAll({
 				where: { userId: userId },
-				attributes: ["id", "orderDate", "status"], //specify the attributes to retrieve
+				attributes: ["id", "orderDate", "status"], // the attributes to retrieve
 			});
 			res.status(200).send(orders);
 		} catch (error) {

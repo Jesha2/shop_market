@@ -5,21 +5,21 @@ import Home from "./components/Home";
 import Checkout from "./components/Checkout";
 // import Product from "./components/Product";
  import Footer from "./components/Footer";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+ import ProductDetails from "./components/ProductDetails"
+import { BrowserRouter , Route, Routes } from "react-router-dom";
 
 function App() {
 	return (
 		<div className="App">
-			<Router>
+			<BrowserRouter>
 				<main>
 				<Routes>
 					<Route
 						path="/login"
 						element={
-							<>
-								<Header />
+							
 								<Login />
-							</>
+						
 						}
 					>
 					</Route>
@@ -34,6 +34,15 @@ function App() {
 					/>
 
 				<Route
+						path="/product/:id"
+						element={
+							<>
+								<Header />
+								<ProductDetails />
+							</>
+						}
+					/>
+					<Route
 						path="/"
 						element={
 							<>
@@ -45,7 +54,7 @@ function App() {
 				</Routes>
 				</main>
 				<Footer /> 
-			</Router>
+			</BrowserRouter>
 			
 		</div>
 	);

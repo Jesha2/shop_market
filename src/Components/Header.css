@@ -1,13 +1,14 @@
 .header {
-background-color: #857707;
+background-color: #114c17;
     height: 90px; 
     width:100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     position: sticky;
     top: 0;
     margin-right: 0;
-    /* z-index: 100; */
+    z-index: 100;
 }
 
 .header_logo {

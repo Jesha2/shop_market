@@ -14,7 +14,8 @@ module.exports= {
         price : DataTypes.DECIMAL,
         stockQuantity : DataTypes.INTEGER,
         category:DataTypes.STRING,
-        imageUrl: DataTypes.STRING 
+        imageUrl: DataTypes.STRING ,
+        review:DataTypes.INTEGER,
 
     }
 
