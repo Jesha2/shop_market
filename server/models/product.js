@@ -15,7 +15,7 @@ module.exports= {
         stockQuantity : DataTypes.INTEGER,
         category:DataTypes.STRING,
         imageUrl: DataTypes.STRING ,
-        review:DataTypes.INTEGER,
+        ratings:DataTypes.INTEGER,
 
     }
 

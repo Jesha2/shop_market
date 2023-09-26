@@ -51,7 +51,7 @@ module.exports = {
 		}
 	},
 	getFavProducts: async (req, res) => {
-		console.log("========================getFavProducts");
+		console.log("========================getFavProductsfdcfr");
 
 	// 	try {
 			

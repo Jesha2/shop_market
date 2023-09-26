@@ -1,0 +1,7 @@
+
+.paymentMessage{
+display:flex;
+   justify-content: center;
+    margin-top: 20%;
+    color:rgb(10, 114, 80);
+}

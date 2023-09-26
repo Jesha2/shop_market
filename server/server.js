@@ -3,22 +3,22 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const PORT = process.env.SERVER_PORT || 3000;
-
-//const { sequelize } = require("./util/database");
-
+const PORT = process.env.SERVER_PORT || 4000;
 
 const { seed } = require("./controllers/seedController");
-const { register, login } = require("./controllers/auth");
+const { register, login } = require("./controllers/authController");
 const { isAuthenticated } = require("./middleware/isAuthenticated");
 const {
 	getAllProducts,
 	addOrder,
 	getOrder,
 	getOrderDetails,
-} = require("./controllers/shop");
+} = require("./controllers/productController");
+
+const { createPaymentIntent,getStripeApiKey } = require("./controllers/paymentController");
 
 // Middleware setup
+app.use(express.static("public"));
 app.use(express.json());
 app.use(cors());
 
@@ -35,6 +35,10 @@ app.post("/order", isAuthenticated,  addOrder);
 app.get("/order/:userId", getOrder);
 app.get("/orderDetails/:orderId", getOrderDetails);
 
+//Payment-Stripe
+app.post("/create-payment-intent", createPaymentIntent);
+//app.post("/payment/process", createPaymentIntent);
+app.get("/payment/process", getStripeApiKey);
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 //seed();
 

@@ -1,18 +1,18 @@
 require("dotenv").config();
-const SECRET = process.env.SECRET;
+const JWT_SECRET = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/user");
 const bcrypt = require("bcryptjs");
 
 const createToken = (username, id) => {
-	console.log("SECRET " + SECRET);
+	console.log("JWT_SECRET " + JWT_SECRET);
 	return jwt.sign(
 		// takes 3 args (userinfo, secret,option obj expires.if u do not want to expire,just pass 2 args
 		{
 			username,
 			id,
 		},
-		SECRET,
+		JWT_SECRET,
 		{
 			expiresIn: "2 days",
 		}

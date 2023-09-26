@@ -16,32 +16,34 @@ const seedData = async () => {
 		//  Product table
 		await Product.bulkCreate([
 			{
-				productName: "Lavender Oil 4oz",
-				description: "Lavender Oil",
-				price: 49.99,
+				productName: "Citrus Blend Oil 14oz",
+				description: "Citrus",
+				price: 99.99,
 				stockQuantity: 5,
 				category: "Calming oil",
 				imageUrl:"https://www.essentialoil.com/cdn/shop/files/Fragrance-London_Man_1_432x432.jpg?v=1693425213",
-				review:5,
+				ratings:5,
 			},
-			{
-				productName: "CLOVE Oil 4oz",
-				description: "CLOVE Oil",
-				price: 49.99,
-				stockQuantity: 5,
-				category: "Culinary Oil",
-				imageUrl:"https://doterra-prod-media1.s3.amazonaws.com/h43/h12/27855358623774.png",
-				review:4,
-			},
+			
 			{
 				productName: "Frankenscience Oil 4oz",
-				description: "CLOVE Oil",
+				description: "Frankenscience Oil",
 				price: 49.99,
 				stockQuantity: 5,
 				category: "medicinal Oil",
 				imageUrl:"https://doterra-prod-media1.s3.amazonaws.com/h43/h12/27855358623774.png",
-				review:4,
+				ratings:3,
 			},
+			{
+			productName: "Apple Cinnamon Oil 4oz",
+			description: "Apple Cinnamon Oil",
+			price: 39.99,
+			stockQuantity: 5,
+			category: "Culinary Oil",
+			imageUrl:"https://www.essentialoil.com/cdn/shop/files/Fragrance-Apple_Cinnamon_1_1024x1024.jpg?v=1693425377",
+			ratings:4,
+		},
+
 		]);
 
 		//  Order table
@@ -59,7 +61,7 @@ const seedData = async () => {
 			orderId: 1,
 		});
 
-		UserDetail.create({
+		await UserDetail.create({
 			userId: 1,
 			fullName: "Harry Smith",
 			address: "123 Highway 1",

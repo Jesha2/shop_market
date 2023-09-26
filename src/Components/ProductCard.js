@@ -16,7 +16,7 @@ const ProductCard = ({product}) => {
         <div className='product_card'>
            
             <img src={product.imageUrl} alt="product" />
-            <h4> {product.productName}</h4>
+            <h3> {product.productName}</h3>
             <h4> ${product.price}</h4>
 
             <button className="blue-btn" onClick={handleClick}>See More</button>
