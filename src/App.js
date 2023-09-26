@@ -1,11 +1,11 @@
 import "./App.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import AuthContext from "./store/authContext";
-import { useCartValue } from "./store/cartContext";
-import { getCartTotal } from "./store/cartReducer";
+//import { useCartValue } from "./store/cartContext";
+//import { getCartTotal } from "./store/cartReducer";
 
 import Header from "./components/Header";
-import Login from "./components/Login";
+//import Login from "./components/Login";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
 import Checkout from "./components/Checkout";
@@ -17,39 +17,9 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 // import { CartProvider } from "./store/cartContext";
 import Auth from "./components/Auth";
 
-////import { loadStripe } from "@stripe/stripe-js";
-//import { Elements } from "@stripe/react-stripe-js";
-
-
-
 function App() {
 	const { state } = useContext(AuthContext);
-	const [{ cart }] = useCartValue();
 	
-
-	// const [clientSecret, setClientSecret] = useState("");
-
-	// useEffect(() => {
-	// const cartItemIds = cart.map((item) => item.id);
-	// 	//const subtotal = getCartTotal(cart);
-	// 	// Create PaymentIntent as soon as the page loads
-	// 	fetch("/create-payment-intent", {
-	// 		method: "POST",
-	// 		headers: { "Content-Type": "application/json" },
-	// 		body: JSON.stringify({ items: cartItemIds }),
-	// 	})
-	// 		.then((res) => res.json())
-	// 		.then((data) => setClientSecret(data.clientSecret));
-	// }, [cart]);
-
-	// const appearance = {
-	// 	theme: "stripe",
-	// };
-	// const options = {
-	// 	clientSecret,
-	// 	appearance,
-	// };
-
 	return (
 		<div className="App">
 			<BrowserRouter>
@@ -57,23 +27,11 @@ function App() {
 					<Header />
 					<Routes>
 						<Route path="/auth" element={<Auth />} />
-						{/* {clientSecret && (
-							<Route
-								path="/checkout"
-								element={
-									state.token ? (
-										<Elements options={options} stripe={stripePromise}>
-											<CheckoutForm />
-										</Elements>
-									) : (
-										<Navigate to="/auth" />
-									)
-								}
-							/>
-						)} */}
+	
 						<Route path='/checkout' element={state.token ? <Checkout/> : <Navigate to="/auth" />}/>
 
 						<Route path="/cart" element={<Cart />} />
+
 						<Route path="/paymentComplete" element={<PaymentComplete />} />
 						<Route path="/products" element={<Product />} />
 						<Route path="/product/:id" element={<ProductDetails />} />
