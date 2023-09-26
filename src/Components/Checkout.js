@@ -12,20 +12,21 @@ import CheckoutForm from "./CheckoutForm";
 const stripePromise = loadStripe("pk_test_51NuKAmLB8ww5YxOuEUpQIdhKhtLOY3w0JWVuVjLnTBdlHbALgtmVL9fn7E8ZYu6g4UxqKK6Sdl86PmGpsErNoi9W00IffIhwuu");
 
 const  Checkout=() =>{
+    //const subtotal = getCartTotal(cart);
   const [clientSecret, setClientSecret] = useState("");
   const [{ cart }] = useCartValue();
+  const cartItemIds = cart.map((item) => item.id);
+// runs this function only once when 
  	useEffect(() => {
-	const cartItemIds = cart.map((item) => item.id);
-		//const subtotal = getCartTotal(cart);
 		// Create PaymentIntent as soon as the page loads
 		fetch("/create-payment-intent", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ items: cartItemIds }),
 		})
-			.then((res) => res.json())
-			.then((data) => setClientSecret(data.clientSecret));
-	}, [cart]);
+        .then((res) => res.json())
+        .then((data) => setClientSecret(data.clientSecret));
+	}, []);
 
   const appearance = {
     theme: 'stripe',
