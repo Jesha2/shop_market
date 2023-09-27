@@ -2,8 +2,9 @@
     display: flex;
     padding: 20px;
     background-color: white;
-    min-height:85vh; 
+    min-height:80vh; 
     justify-content:space-evenly;
+    /* padding-top:3%; */
     /* height: max-content; */
 }
 

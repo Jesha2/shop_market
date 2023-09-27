@@ -41,18 +41,26 @@ const Auth = () => {
 				<input
 					className="form-input"
 					placeholder="Username"
+					type = "text"
+					name="username"
+					required
 					onChange={(e) => setUsername(e.target.value)}
 				/>
 				<input
 					className="form-input"
 					placeholder="Password"
-					type="password"
+					type = "password"
+					name="password"
+					required
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 				{register &&
 				(<input
 					className="form-input"
 					placeholder="email"
+					type = "email"
+					name="email"
+					required
 					onChange={(e) => setEmail(e.target.value)}
 				/>)
 				}
@@ -67,3 +75,4 @@ const Auth = () => {
 };
 
 export default Auth;
+

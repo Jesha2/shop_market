@@ -22,7 +22,8 @@ const CartCard = ({ product }) => {
 					<small>$</small>
 					<strong>{product.price}</strong>
 				</p>
-				<p className="price">{product.productName}</p>
+
+				<p className="price">Quantity: {product.quantity}</p>
 				<div className="cartCard_rating">
 					{Array(product.ratings)
 						.fill()

@@ -2,15 +2,23 @@
   margin: 0;
   padding: 0;
 }
+h1{
+  font-family:cursive;
+}
 .link-no-underline {
   text-decoration: none;
 }
 
 .link-hover:hover {
   color: #caa565; 
-  text-decoration: underline; 
+  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); */
+  transform: scale(1.1); 
+  
 }
 .whiteColor{
+	color:white
+}
+.BG_whiteColor{
 	color:white
 }
 

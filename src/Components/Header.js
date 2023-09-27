@@ -40,14 +40,13 @@ const Header = () => {
 			will have another 2 */}
 			<Link to="/" className="link-no-underline link-hover">
 				<div className="header_logo">
-					{/* <WaterDropIcon fontSize="large" sx={{ color: amber[900] }} 
-        className="header_logoImage"/> */}
+					
 					<WaterDropIcon
 						fontSize="large"
 						sx={{ color: amber[500] }}
 						className="header_logoImage"
 					/>
-					<h2 className="header_logoTitle">Essential Oils</h2>
+					<h1 className="header_logoTitle">Essential Oils</h1>
 				</div>
 			</Link>
 
@@ -58,7 +57,7 @@ const Header = () => {
 			</div>
 
 			<div className="header_nav">
-				<div className="nav_item">
+				<div className="nav_item link-hover">
 					{state.token ? (
 						// Content to display when the user is logged in
 						<>

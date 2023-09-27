@@ -8,8 +8,7 @@
     /* mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
 }
 .image-container {
-    /* Set your desired container width */
-    height: 50vh; /* Set your desired container height */
+    height: 50vh; 
     background-image: url('https://www.essentialoil.com/cdn/shop/files/eoc-wholesale-slideshow_1800x1000.jpg?v=1678676162');
     background-size: cover; /* Cover the container with the image */
     background-position: center center; /* Center the image horizontally and vertically */
@@ -28,6 +27,7 @@
     align-items: center;
     font-style: italic;
     font-weight: 900;
+    font-family:cursive;
   
   }
 /* .adBanner{

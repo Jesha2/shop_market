@@ -23,9 +23,10 @@ const Home = () => {
 	return (
 		<div className="home">
 			<div className="image-container">
-				<div className="image-center">
-          <>
-          <br/> <br/> <br/>Welcome to world of essential oils</>
+				<div className="image-center" >
+          
+          <br/> <br/>
+		  Welcome to world of essential oils
           </div>
 			</div>
 			{/* <div >
