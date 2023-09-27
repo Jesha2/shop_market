@@ -1,4 +1,6 @@
 .header {
+    color: white;
+
 background-color: #114c17;
 
     height: 90px; 
@@ -15,7 +17,6 @@ background-color: #114c17;
 .header_logo {
     display: flex;
     align-items: center;
-    /* color: #1330b4; */
     margin: 0 25px;
 }
 
@@ -45,7 +46,7 @@ background-color: #114c17;
 .header_searchIcon {
     padding: 5px;
     height: 22px ;
-    color: white;
+    /* color: white; */
     /* background-color: #bdbab6; */
 }
 
@@ -59,7 +60,7 @@ background-color: #114c17;
     flex-direction: column;
     margin-left: 10px;
     margin-right: 10px;  
-    color: white;
+    /* color: white; */
 }
 
 .nav_itemLine1 {

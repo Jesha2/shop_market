@@ -46,6 +46,7 @@ const Auth = () => {
 				<input
 					className="form-input"
 					placeholder="Password"
+					type="password"
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 				{register &&
@@ -57,7 +58,8 @@ const Auth = () => {
 				}
 				<button className="form-btn">{register ? "Sign Up" : "Login"}</button>
 			</form>
-			<button className="form-btn" onClick={() => setRegister(!register)}>
+			<button className="form-btn link-no-underline whiteColor"  
+			onClick={() => setRegister(!register)}>
 				Need to {register ? "Login" : "Sign Up"}?
 			</button>
 		</main>

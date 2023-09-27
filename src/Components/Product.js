@@ -22,6 +22,7 @@ const Product = ({ product }) => {
 				productName: product.productName,
 				price: product.price,
 				ratings: product.ratings,
+				stockQuantity: product.stockQuantity,
 				quantity: 1,
 			},
 		});

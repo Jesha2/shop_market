@@ -5,8 +5,10 @@ import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
 import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import { amber } from "@mui/material/colors";
 import SearchIcon from "@mui/icons-material/Search";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCartValue } from "../store/cartContext";
+import { getCartTotal } from "../store/cartReducer";
+
 import { useContext } from "react";
 import AuthContext from "../store/authContext";
 
@@ -23,16 +25,20 @@ const Header = () => {
 	//const [state, dispatch] = useCartValue();
 	//const [{basket}, dispatch] = useCartValue();
 	const [{ cart }] = useCartValue();
+	
 	const { state, dispatch } = useContext(AuthContext);
 	const handleLogout = () => {
 		dispatch({ type: "LOGOUT" });
+		navigate("/");
+
 	  };
+	const navigate = useNavigate()  ;
 	const location =useLocation() ; // when loggin tp pass the location of which page/path user logged in so that it can go back to that page
 	return (
-		<div className="header">
+		<div className="header ">
 			{/* //header divided into 3 parts: logo, search bar,cart-each of these div
 			will have another 2 */}
-			<Link to="/" className="link-no-underline">
+			<Link to="/" className="link-no-underline link-hover">
 				<div className="header_logo">
 					{/* <WaterDropIcon fontSize="large" sx={{ color: amber[900] }} 
         className="header_logoImage"/> */}
@@ -47,7 +53,7 @@ const Header = () => {
 
 			<div className="header_search">
 				<input type="text" className="header_searchInput" />
-				<SearchIcon className="header_searchIcon"></SearchIcon>
+				<SearchIcon className="header_searchIcon link-hover"></SearchIcon>
 				{/* <BiSearchAlt2 size="2em" color="#DA7635" /> */}
 			</div>
 
@@ -64,8 +70,8 @@ const Header = () => {
 					) : (
 						// Content to display when the user is not logged in
 						<>
-							<span className="nav_itemLine1">Hello Guest</span>
-							<Link to="/auth" className="link-no-underline whiteColor"  state={{ from: location.pathname }} >
+							<span className="nav_itemLine1 link-hover">Hello Guest</span>
+							<Link to="/auth" className="link-no-underline whiteColor link-hover"  state={{ from: location.pathname }} >
 								
 								<span className="nav_itemLine2">Sign in</span>
 							</Link>
@@ -77,10 +83,13 @@ const Header = () => {
 					<span className="nav_itemLine1">my</span>
 					<span className="nav_itemLine2">market</span>
 				</div> */}
-				<Link to="/cart" className="link-no-underline">
-					<div className="nav_itemCart">
-						<ShoppingCartTwoToneIcon />
-						<span className="nav_itemLine2 nav_cartCount">{cart.length}</span>
+				<Link to="/cart" className=" link-hover link-no-underline">
+					<div className="nav_itemCart link-hover">
+						<ShoppingCartTwoToneIcon className="link-hover" />
+						<span className="nav_itemLine2 nav_cartCount">{cart.reduce((total, item) => total + item.quantity, 0)}</span>
+					</div>
+					<div>
+						<span className="nav_itemLine2 whiteColor ">${getCartTotal(cart)}</span>
 					</div>
 				</Link>
 			</div>

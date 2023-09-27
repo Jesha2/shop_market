@@ -35,18 +35,19 @@
 	/* background-color: rgb(195, 114, 16); */
 
 .form-btn {
-	border: 1px solid #114c17;
+	/* border: 1px solid #114c17; */
 	border-radius: 5px;
-	color: #114c17;
-	background: transparent;
+	/* color: #114c17; */
+	color: #f0f0f0;
+	/* background: transparent; */
 	padding: 10px 20px;
 	transition: .5s;
 	margin-top: 10px;
 }
 
 .form-btn:hover {
-	background-color: #171717;
-	color: #f0f0f0;
+	background-color: #114c17;
+	/* color: #114c17; */
 	transform: translateY(-3px);
 }
 

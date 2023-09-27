@@ -3,14 +3,14 @@ import "./Cart.css";
 import { useCartValue } from "../store/cartContext";
 import { getCartTotal } from "../store/cartReducer";
 import CartCard from "./CartCard";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 
 const Cart = () => {
 	const [{ cart }] = useCartValue();
 	const value = getCartTotal(cart);
 	//const products = cart;
 	console.log("cart", cart);
-
+	const location =useLocation() ;
 	return (
 		<div className="cart">
 			<div className="cart_left">
@@ -25,12 +25,12 @@ const Cart = () => {
 			<div className="cart_right">
 				<div className="subtotal">
 					<p>
-						Subtotal ({cart.length} items): <strong>${value}</strong>
+						Subtotal ({cart.reduce((total, item) => total + item.quantity, 0)} items): <strong>${value}</strong>
 					</p>
 					{/* <small className="subtotal_gift">
 						<input type="checkbox" /> This order contains a gift
 					</small> */}
-					<Link to="/checkout">
+					<Link to="/checkout" className="link-no-underline whiteColor"  state={{ from: location.pathname }} >
 						<button>Proceed to Checkout</button>
 					</Link>
 				</div>

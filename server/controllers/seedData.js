@@ -34,6 +34,7 @@ const seedData = async () => {
 				imageUrl:"https://doterra-prod-media1.s3.amazonaws.com/h43/h12/27855358623774.png",
 				ratings:3,
 			},
+			
 			{
 			productName: "Apple Cinnamon Oil 4oz",
 			description: "Apple Cinnamon Oil",
@@ -42,7 +43,7 @@ const seedData = async () => {
 			category: "Culinary Oil",
 			imageUrl:"https://www.essentialoil.com/cdn/shop/files/Fragrance-Apple_Cinnamon_1_1024x1024.jpg?v=1693425377",
 			ratings:4,
-		},
+			},
 
 		]);
 

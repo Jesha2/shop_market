@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useCartValue } from "../store/cartContext";
 import { getCartTotal } from "../store/cartReducer";
+import "./CheckoutForm.css"
 import {
   PaymentElement,
   LinkAuthenticationElement,
@@ -93,15 +94,15 @@ export default function CheckoutForm() {
     <form id="payment-form" onSubmit={handleSubmit}>
    
       <LinkAuthenticationElement
-        id="link-authentication-element"
-        onChange={(e) => setEmail(e.target.value)}
+        id="link-authentication-element" 
+        onChange={(e) => setEmail(e.target?.value || '')}
       />
       
       <PaymentElement id="payment-element" options={paymentElementOptions} />
       
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <button className="button-chkout" disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> :`Pay $${totalAmt}` }
+          {isLoading ? <div className="spinner" id="spinner"></div> :<h2>Pay ${totalAmt}</h2> }
         </span>
       </button>
       {/* Show any error or success messages */}

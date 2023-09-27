@@ -2,32 +2,43 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const { Product } = require("../models/product");
 
 
-const calculateOrderAmount = async (itemIds) => {
-    console.log("calculateOrderAmount");
+const calculateOrderAmount = async (items) => {
+  try {
+    const itemIds = items.map((item) => item.id);
 
-    try {
-      const products = await Product.findAll({
-        where: { id: itemIds },
-      });
-  
-      let totalAmount = 0;
-      for (const product of products) {
-        const priceInCents = Math.round(product.price * 100); // Assuming product.price is in dollars
+    // Batch fetch products using a single database query
+    const products = await Product.findAll({
+      where: {
+        id: itemIds,
+      },
+    });
 
-        totalAmount += priceInCents;
+    let totalAmount = 0;
+
+    for (const item of items) {
+      // Find the corresponding product in the fetched products
+      const product = products.find((p) => p.id === item.id);
+
+      if (product) {
+        // Calculate the item's total price based on its price and quantity
+        const itemTotal = product.price * item.quantity; // Assuming product.price is in dollars
+
+        totalAmount += itemTotal;
       }
-      console.log("totalAmount   " + totalAmount)
-      return totalAmount;
-    } catch (error) {
-      console.error("Error calculating order amount:", error);
-      throw error;
     }
-  };
+
+    console.log("totalAmount   " + totalAmount);
+    return Math.round(totalAmount * 100); // Convert to cents and round to an integer
+  } catch (error) {
+    console.error("Error calculating order amount:", error);
+    throw error;
+  }
+};
 
 module.exports = {
 	createPaymentIntent: async (req, res) => {
 		console.log("createPaymentIntent");
-		const { items } = req.body;
+		const { items } = req.body;//has ids and quantity
         let orderAmount =0;
         console.log(items)
         if(items.length>0){

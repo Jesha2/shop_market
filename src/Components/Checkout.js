@@ -15,7 +15,11 @@ const  Checkout=() =>{
     //const subtotal = getCartTotal(cart);
   const [clientSecret, setClientSecret] = useState("");
   const [{ cart }] = useCartValue();
-  const cartItemIds = cart.map((item) => item.id);
+  const cartItemIds = cart.map((item) => ({
+    id: item.id,
+    quantity: item.quantity, // Include the quantity for each item
+  })
+  );
 // runs this function only once when 
  	useEffect(() => {
 		// Create PaymentIntent as soon as the page loads
@@ -37,7 +41,7 @@ const  Checkout=() =>{
   };
 
   return (
-    <div className="App">
+    <div>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />
