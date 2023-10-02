@@ -7,9 +7,11 @@
     height: 70vh;
     width: 100vw;
     margin-top: 20px;
+   
   }
   
   form {
+    background-color: white;
     margin-top: 20px;
     width: 30vw;
     min-width: 500px;

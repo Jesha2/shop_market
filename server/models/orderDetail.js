@@ -9,8 +9,8 @@ module.exports= {
             allowNull:false,
             primaryKey: true
         },
-        quantity: DataTypes.INTEGER,
-        subtotal: DataTypes.DECIMAL(10, 2)
+        quantity: DataTypes.INTEGER
+        
     }
 
     )

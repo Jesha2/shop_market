@@ -8,14 +8,15 @@ module.exports = {
         const headerToken = req.get('Authorization')//retrieves the token from the HTTP request's "Authorization" header.
 
         if (!headerToken) {
-            console.log('ERROR IN auth middleware')
+            console.log('ERROR IN auth middleware: No token')
             res.sendStatus(401)//401 is unauthorized error code
         }
 
         let token// declared to store the decoded JWT.
 
         try {
-            token = jwt.verify(headerToken, JWT_SECRET)
+            token = jwt.verify(headerToken, JWT_SECRET);
+            console.log("jwt token verfified, can move to the next db method")
         } catch (err) {
             err.statusCode = 500//internal server error
             throw err

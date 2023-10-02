@@ -62,14 +62,14 @@ const seedData = async () => {
 		//  Order table
 		await Order.create({
 			orderDate: new Date(),
-			status: true,
+			status: "processing",
 			userId: 1,
+			total: 99.99
 		});
 
 		//  OrderDetail table
 		await OrderDetail.create({
 			quantity: 2,
-			subtotal: 99.98,
 			productId: 1,
 			orderId: 1,
 		});

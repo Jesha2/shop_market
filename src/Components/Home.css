@@ -11,7 +11,7 @@
     height: 50vh; 
     background-image: url('https://www.essentialoil.com/cdn/shop/files/eoc-wholesale-slideshow_1800x1000.jpg?v=1678676162');
     background-size: cover; /* Cover the container with the image */
-    background-position: center center; /* Center the image horizontally and vertically */
+    background-position: 60% 60%; /* Center the image horizontally and vertically */
     position: relative;
     font-size: large;
   }

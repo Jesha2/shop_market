@@ -27,8 +27,8 @@ const CartCard = ({ product }) => {
 				<div className="cartCard_rating">
 					{Array(product.ratings)
 						.fill()
-						.map((_, i) => (
-							<p>⭐</p>
+						.map((i,index) => (
+							<p key={index} >⭐</p>
 						))}
 				</div>
 				<button onClick={removeFromCart}>Remove from Cart</button>

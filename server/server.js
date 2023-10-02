@@ -1,9 +1,13 @@
-// server.js
+
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const PORT = process.env.SERVER_PORT || 4000;
+//let endpointSecret = process.env.END_POINT_SECRET;
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY); //used backend
+//const stripe= require("stripe")(process.env.STRIPE_API); //used in front end
+//const YOUR_DOMAIN = "http://localhost:3000/paymentComplete";
 
 const { seed } = require("./controllers/seedController");
 const { register, login } = require("./controllers/authController");
@@ -11,7 +15,7 @@ const { isAuthenticated } = require("./middleware/isAuthenticated");
 const {
 	getAllProducts,
 	addOrder,
-	getOrder,
+	getOrders,
 	getOrderDetails,
 } = require("./controllers/productController");
 
@@ -31,20 +35,91 @@ app.post("/login", login); //Using GET for login is generally not recommended be
 
 //Routes for Products
 app.get("/products", getAllProducts);
+
+//Routes for adding,fetching orders
 app.post("/order", isAuthenticated,  addOrder);
-app.get("/order/:userId", getOrder);
+app.get("/orders/:userId", getOrders);
 app.get("/orderDetails/:orderId", getOrderDetails);
 
-//Payment-Stripe
-app.post("/create-payment-intent", createPaymentIntent);
+ //Payment-Stripe 
+app.post("/createPaymentIntent", createPaymentIntent);
 //app.post("/payment/process", createPaymentIntent);
 app.get("/payment/process", getStripeApiKey);
+
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 //seed();
 
+//cc# for stripe testing : 4000002500003155
 
 
+//Payment-Stripe
+// app.post('/create-checkout-session', async (req, res) => {
+// console.log("Inside stripe's create-checkout-session");
+ 
+//     const { cartItems } = req.body;
+//     //console.log("cartItems", cartItems)
+//   const lineItems = cartItems.map((cartItem) => ({
+//     price: cartItem.price, 
+//     quantity: cartItem.quantity,
+//   }));
+//   console.log("lineItems", lineItems)
+//   const session = await stripe.checkout.sessions.create({
+//     line_items: lineItems,
+//     mode: 'payment',
+//     success_url: `${YOUR_DOMAIN}?success=true`,
+//     cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+//   });
 
+//   res.redirect(303, session.url);
+// });
+// Use body-parser to retrieve the raw body as a buffer
+// const bodyParser = require('body-parser');
+
+// app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, response) => {
+//   const payload = request.body;
+//   const sig = request.headers['stripe-signature'];
+
+//   let event;
+
+//   try {
+//     event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
+//   } catch (err) {
+//     return response.status(400).send(`Webhook Error: ${err.message}`);
+//   }
+//   console.log(" event: " , event);
+//   response.status(200).end();
+// });
+
+  
+
+
+// app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+// 	const sig = request.headers['stripe-signature'];
+  
+// 	let event;
+  
+// 	try {
+// 	  event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+// 	} catch (err) {
+// 	  response.status(400).send(`Webhook Error: ${err.message}`);
+// 	  return;
+// 	}
+  
+// 	// Handle the event
+// 	switch (event.type) {
+// 	  case 'payment_intent.succeeded':
+// 		const paymentIntentSucceeded = event.data.object;
+// 		console.log(paymentIntentSucceeded);
+// 		// Then define and call a function to handle the event payment_intent.succeeded
+// 		break;
+// 	  // ... handle other event types
+// 	  default:
+// 		console.log(`Unhandled event type ${event.type}`);
+// 	}
+  
+// 	// Return a 200 response to acknowledge receipt of the event
+// 	response.send();
+//   });
 
 
 
@@ -77,3 +152,22 @@ app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 
 // //   // Call the startApp function to start the app after seeding
 //   startApp();
+
+//const bodyParser = require('body-parser')
+//   app.use(bodyParser.json())
+
+// app.use(cors())
+
+// app.post('/pay', async (req, res) => {
+//     const {email} = req.body;
+    
+//     const paymentIntent = await stripe.paymentIntents.create({
+//         amount: 5000,
+//         currency: 'usd',
+//         // Verify your integration in this guide by including this parameter
+//         metadata: {integration_check: 'accept_a_payment'},
+//         receipt_email: email,
+//       });
+// console.log("paymentIntent  :",paymentIntent);
+//       res.json({'client_secret': paymentIntent['client_secret']})
+// })

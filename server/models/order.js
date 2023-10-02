@@ -13,7 +13,8 @@ module.exports= {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW, // Set the default value to the current date and time
           },
-        status: DataTypes.STRING
+        status: DataTypes.STRING,
+        total: DataTypes.DECIMAL(10, 2)
     }
 
     )
