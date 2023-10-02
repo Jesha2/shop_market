@@ -104,7 +104,7 @@ const Header = () => {
 						// Content to display when the user is not logged in
 						<>
 							<div className="user-info">
-								<span className="nav_itemLine2 link-hover">Hello Guest</span>
+								<span className="nav_itemLine2 link-hover">Hey Guest</span>
 
 								<Link
 									to="/auth"
