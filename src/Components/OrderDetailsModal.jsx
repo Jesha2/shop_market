@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./OrderDetailsModal.css"; // Import your CSS for styling
 
-const OrderDetailsModal = ({ orderId, closeModal }) => {
+const OrderDetailsModal = ({ orderId, closeModal, orderDate }) => {
   const [orderDetails, setOrderDetails] = useState(null);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const OrderDetailsModal = ({ orderId, closeModal }) => {
         {orderDetails ? (
           <div>
             <p>Order ID: {orderId}</p>
-            <p>Order Date: {orderDetails[0].order.orderDate}</p>
+            <p>Order Date: {orderDate}</p>
             <p>Status: {orderDetails[0].order.status}</p>
             <p>Total Amount: ${orderDetails[0].order.total}</p>
             <h3>Products:</h3>
@@ -38,8 +38,11 @@ const OrderDetailsModal = ({ orderId, closeModal }) => {
               {orderDetails.map((detail) => (
                 <li key={detail.id}>
                   <img src={detail.product.imageUrl} alt={detail.product.productName} />
-                  <p>{detail.product.productName}</p>
-                  <p>Price: ${detail.product.price}</p>
+                  <div className="product_details">
+                          <p>{detail.product.productName}</p> 
+                          <p>Quantity: {detail.quantity}</p>
+                          <p>Price: ${detail.product.price}</p>
+                  </div>
                 </li>
               ))}
             </ul>

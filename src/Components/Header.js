@@ -58,7 +58,7 @@ const Header = () => {
 				<input
 					type="text"
 					className="header_searchInput"
-					value="4242424242424242"
+					// value="4242424242424242"
 				/>
 				<SearchIcon className="header_searchIcon link-hover"></SearchIcon>
 				{/* <BiSearchAlt2 size="2em" color="#DA7635" /> */}

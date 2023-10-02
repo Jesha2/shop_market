@@ -31,19 +31,19 @@ const OrderCard = ({ order }) => {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-
+  const orderDate = formatOrderDate(order.orderDate);
   return (
     <div className="order-card">
       <h3>Order ID: {order.id}</h3>
       <button onClick={toggleModal} className="order-link">
         View Details
       </button>
-      <p>Order Date: {formatOrderDate(order.orderDate)}</p>
+      <p>Order Date: {orderDate}</p>
       <p>Status: {order.status}</p>
       <p>Total: ${order.total}</p>
       {isModalOpen && (
         <OrderDetailsModal
-          orderId={order.id} // Pass the orderId prop to the modal
+          orderId={order.id} orderDate={orderDate} // Pass the orderId prop to the modal
           closeModal={toggleModal}
         />
       )}
