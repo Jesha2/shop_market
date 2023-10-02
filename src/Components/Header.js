@@ -13,7 +13,7 @@ import { useContext } from "react";
 import AuthContext from "../store/authContext";
 
 //const primary = `rgba(${red[500]}, 0.5)`;
-const transparentColor = "rgba(255, 0, 0, 0.5)";
+//const transparentColor = "rgba(255, 0, 0, 0.5)";
 
 const Header = () => {
 	//console.log("header");

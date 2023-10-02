@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
+//import axios from "axios";
 import AuthContext from "../store/authContext";
 import { useCartValue } from "../store/cartContext";
 import { getCartTotal } from "../store/cartReducer";
@@ -12,7 +12,9 @@ import {
 } from "@stripe/react-stripe-js";
 
 export default function CheckoutForm() {
-	const { state } = useContext(AuthContext);
+	//const return_url = "http://localhost:3000/createOrder";
+	const return_url = "https://shopnmarket.netlify.app/createOrder";
+	//const { state } = useContext(AuthContext);
 	const [{ cart }] = useCartValue();
 	console.log(cart);
 	const totalAmt = getCartTotal(cart);
@@ -20,7 +22,7 @@ export default function CheckoutForm() {
 	const stripe = useStripe();
 	const elements = useElements();
 
-	const [email, setEmail] = useState("");
+	//const [email, setEmail] = useState("");
 	const [message, setMessage] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -61,18 +63,16 @@ export default function CheckoutForm() {
 	const handleSubmit = async (e) => {
 		console.log("inside HandleSubmit");
 		e.preventDefault();
-		//addOrderToDatabase();//WORKS TWICE
 		if (!stripe || !elements) {
 			// Stripe.js hasn't yet loaded.
 			// Make sure to disable form submission until Stripe.js has loaded.
 			return;
 		}
 		setIsLoading(true);
-		//alert("confirmingpayment", cart);
 		const result = await stripe.confirmPayment({
 			elements,
 			confirmParams: {
-				return_url: "http://localhost:3000/createOrder",
+				return_url: return_url,
 			},
 			
 		});
