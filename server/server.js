@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const path = require("path")
 const PORT = process.env.SERVER_PORT || 4000;
 //let endpointSecret = process.env.END_POINT_SECRET;
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY); //used backend
@@ -26,7 +27,9 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(cors());
 
-// the seed controller Route
+app.use(express.static(path.join(__dirname,'../build')));//Netlify
+
+// the seed controller Rou
 app.post("/seed", seed);
 
 //user login/register/authentication routes
