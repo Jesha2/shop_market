@@ -13,12 +13,12 @@ module.exports = {
 
 			res.status(200).send(Products);
 		} catch (error) {
-			console.log("ERROR IN getAllPProduct");
+			console.log("ERROR IN getAllProduct");
 			console.log(error);
 			res.sendStatus(400);
 		}
 	},
-	
+	postgres://shopmarket_user:8mx7dwgqHgOvfuPewzuYPUrLop0rE10z@dpg-cke5kjfs0fgc73dopofg-a.oregon-postgres.render.com/shopmarket?ssl=true
 	addOrder: async (req, res) => {
 		console.log("addOrder");
 		try {
