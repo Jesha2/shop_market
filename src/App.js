@@ -3,7 +3,6 @@ import { useContext } from "react";
 import AuthContext from "./store/authContext";
 //import { useCartValue } from "./store/cartContext";
 //import { getCartTotal } from "./store/cartReducer";
-
 import Header from "./components/Header";
 //import Login from "./components/Login";
 import Cart from "./components/Cart";
