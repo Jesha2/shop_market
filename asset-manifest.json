@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Jesha2/shop_market/static/css/main.52362099.css",
+    "main.js": "/Jesha2/shop_market/static/js/main.31f69766.js",
+    "static/js/787.89bdcd73.chunk.js": "/Jesha2/shop_market/static/js/787.89bdcd73.chunk.js",
+    "index.html": "/Jesha2/shop_market/index.html",
+    "main.52362099.css.map": "/Jesha2/shop_market/static/css/main.52362099.css.map",
+    "main.31f69766.js.map": "/Jesha2/shop_market/static/js/main.31f69766.js.map",
+    "787.89bdcd73.chunk.js.map": "/Jesha2/shop_market/static/js/787.89bdcd73.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.52362099.css",
+    "static/js/main.31f69766.js"
+  ]
+}
