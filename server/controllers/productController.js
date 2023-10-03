@@ -18,7 +18,7 @@ module.exports = {
 			res.sendStatus(400);
 		}
 	},
-	postgres://shopmarket_user:8mx7dwgqHgOvfuPewzuYPUrLop0rE10z@dpg-cke5kjfs0fgc73dopofg-a.oregon-postgres.render.com/shopmarket?ssl=true
+	
 	addOrder: async (req, res) => {
 		console.log("addOrder");
 		try {
