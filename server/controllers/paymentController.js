@@ -72,7 +72,7 @@ const calculateOrderTotal = async (items) => {
 			let orderTotal = 0;
 			console.log(items);
 			const authorizationHeader = req.headers.authorization;
-			
+			console.log(authorizationHeader);
 			try {
 				if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
 					res.status(401).json({ error: "Unauthorized - Missing or invalid API key" });
