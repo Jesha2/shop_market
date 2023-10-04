@@ -15,8 +15,9 @@ const Orders = () => {
   useEffect(() => {
     // Fetch user's orders based on userId
     const getOrders = async () => {
-      try {
-        const response = await axios.get(`/orders/${userId}`);
+      try {  
+        //const response = await axios.get(`/orders/${userId}`);
+        const response = await axios.get(`http://54.84.211.174:4000/orders/${userId}`);
         setOrders(response.data);
       } catch (error) {
         console.error("Error fetching orders:", error);

@@ -1,4 +1,6 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripeSec = (process.env.STRIPE_SECRET_KEY); 
+
 const { Product } = require("../models/product");
 const { addOrder } = require("./productController");
 
@@ -69,7 +71,24 @@ const calculateOrderTotal = async (items) => {
 			const { userId, items } = req.body; //has ids and quantity
 			let orderTotal = 0;
 			console.log(items);
+			const authorizationHeader = req.headers.authorization;
+			
 			try {
+				if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {
+					res.status(401).json({ error: "Unauthorized - Missing or invalid API key" });
+					return;
+				  }
+			  
+				  // Extract the API key from the Authorization header
+				  const apiKey = authorizationHeader.slice(7); // Removes "Bearer " prefix
+			  
+				  // Verify that the API key matches  Stripe secret key
+				  console.log("*********** ")
+				  //console.log( stripeSec)
+				  if (apiKey !==  stripeSec) {
+					res.status(401).json({ error: "Unauthorized - Invalid API key " });
+					return;
+				  }
 				if (items.length > 0) {
 					orderTotal = await calculateOrderTotal(items);
 

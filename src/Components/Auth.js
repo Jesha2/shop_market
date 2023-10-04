@@ -19,7 +19,8 @@ const Auth = () => {
 		e.preventDefault();
 		let body = { username, password , email};
 		axios
-			.post(register ? "/register" : "/login", body)
+			//.post(register ? "/register" : "/login", body)
+			.post(register ? "http://54.84.211.174:4000/register" : "http://54.84.211.174:4000/login", body)
 			.then((res) => {
 				dispatch({ type: "LOGIN", payload: res.data });
 				navigate(location.state?.from || "/");

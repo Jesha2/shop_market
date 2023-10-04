@@ -28,10 +28,14 @@ const CreateOrder = () => {
 	// );
 
 	const addOrderToDatabase = async () => {
+		//const api_url="/order";
+		const api_url="http://54.84.211.174:4000/order";
+
 		//console.log("addOrderToDatabase" + localStorage.getItem("token"));
 		try {
 			const response = await axios.post(
-				"/order",
+				api_url,
+				
 				{
 					items: cart,
 					userId: localStorage.getItem("userId"),

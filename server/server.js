@@ -6,7 +6,7 @@ const app = express();
 const path = require("path")
 const PORT = process.env.SERVER_PORT || 4000;
 //let endpointSecret = process.env.END_POINT_SECRET;
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY); //used backend
+//const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY); //used backend
 //const stripe= require("stripe")(process.env.STRIPE_API); //used in front end
 //const YOUR_DOMAIN = "http://localhost:3000/paymentComplete";
 

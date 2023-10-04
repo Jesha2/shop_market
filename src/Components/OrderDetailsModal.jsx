@@ -9,7 +9,9 @@ const OrderDetailsModal = ({ orderId, closeModal, orderDate }) => {
     // Fetch order details based on orderId
     const fetchOrderDetails = async () => {
       try {
-        const response = await axios.get(`/orderDetails/${orderId}`);
+        //const response = await axios.get(`/orderDetails/${orderId}`);
+        const response = await axios.get(`http://54.84.211.174:4000/orderDetails/${orderId}`);
+      
         console.log(response.data)
         setOrderDetails(response.data);
       } catch (error) {

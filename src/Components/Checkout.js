@@ -17,6 +17,8 @@ const Checkout = () => {
 	const [clientSecret, setClientSecret] = useState("");
 	const { state } = useContext(AuthContext);
 	const [{ cart }] = useCartValue();
+	const stripeSecKey =
+		"sk_test_51NuKAmLB8ww5YxOudwndoWwk0MAyTaM1iIHmuXunzR6ixP6hNJlrNmQlChs7jhysbQQUGRxrJrklEnx05QaV6dVk00Uj5b4MVu";
 	const cartItems = cart.map((item) => ({
 		id: item.id,
 		quantity: item.quantity, //quantity for each item
@@ -24,9 +26,14 @@ const Checkout = () => {
 	//runs this function only once when
 	useEffect(() => {
 		// Create PaymentIntent as soon as the page loads-invoice
-		fetch("/createPaymentIntent", {
+
+		//fetch("/createPaymentIntent", {
+		fetch("http://54.84.211.174:4000/createPaymentIntent", {
 			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${stripeSecKey}`,
+			},
 			body: JSON.stringify({
 				items: cartItems,
 				userId: state.userId,
@@ -46,7 +53,7 @@ const Checkout = () => {
 
 	return (
 		<div>
-			{(cart.length>0) ? (
+			{cart.length > 0 ? (
 				clientSecret && (
 					<Elements options={options} stripe={stripePromise}>
 						<CheckoutForm />

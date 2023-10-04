@@ -12,8 +12,8 @@ import {
 } from "@stripe/react-stripe-js";
 
 export default function CheckoutForm() {
-	const return_url = "http://localhost:3000/createOrder";
-	//const return_url = "https://shopnmarket.netlify.app/createOrder";
+	//const return_url = "http://localhost:3000/createOrder";
+	const return_url = "https://jesha2.github.io/shop_market/createOrder";
 	//const { state } = useContext(AuthContext);
 	const [{ cart }] = useCartValue();
 	console.log(cart);

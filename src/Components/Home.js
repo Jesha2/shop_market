@@ -13,8 +13,8 @@ const Home = () => {
 	useEffect(() => {
 	//console.log("USEEFFECT in HOMEJS");
 		axios
-			//.get("http://54.84.211.174:4000")
-			.get("/products")
+			.get("http://54.84.211.174:4000/products")
+			//.get("/products")
 			.then((res) => {
 				setProducts(res.data);
 				console.log(res.data);
